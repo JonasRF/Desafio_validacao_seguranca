@@ -1,10 +1,5 @@
 package com.devsuperior.bds04.tests;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.stereotype.Component;
@@ -13,13 +8,18 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @Component
 public class TokenUtil {
 
-	@Value("${security.oauth2.client.client-id}")
+	@Value("${security.client-id}")
 	private String clientId;
 
-	@Value("${security.oauth2.client.client-secret}")
+	@Value("${security.client-secret}")
 	private String clientSecret;
 	
 	public String obtainAccessToken(MockMvc mockMvc, String username, String password) throws Exception {
@@ -31,7 +31,7 @@ public class TokenUtil {
 		params.add("password", password);
 
 		ResultActions result = mockMvc
-				.perform(post("/oauth/token")
+				.perform(post("/oauth2/token")
 						.params(params)
 						.with(httpBasic(clientId, clientSecret))
 						.accept("application/json;charset=UTF-8"))

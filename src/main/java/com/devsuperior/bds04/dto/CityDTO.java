@@ -1,12 +1,11 @@
 package com.devsuperior.bds04.dto;
 
+import com.devsuperior.bds04.entities.City;
+import jakarta.validation.constraints.NotBlank;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.validation.constraints.NotBlank;
-
-import com.devsuperior.bds04.entities.City;
 
 public class CityDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

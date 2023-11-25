@@ -1,16 +1,11 @@
 package com.devsuperior.bds04.entities;
 
-import java.io.Serializable;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "tb_role")
-public class Role implements Serializable{
+public class Role implements GrantedAuthority {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
